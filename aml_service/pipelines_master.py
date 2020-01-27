@@ -23,6 +23,7 @@ parser.add_argument("--model_name", type=str, help="model name", dest="model_nam
 parser.add_argument("--build_number", type=str, help="build number", dest="build_number", required=True)
 parser.add_argument("--image_name", type=str, help="image name", dest="image_name", required=True)
 parser.add_argument("--path", type=str, help="path", dest="path", required=True)
+parser.add_argument("--experiment_name", type=str, help="experiment name", dest="experiment_name", required=True)
 args = parser.parse_args()
 
 print("Argument 1: %s" % args.aml_compute_target)
@@ -30,6 +31,7 @@ print("Argument 2: %s" % args.model_name)
 print("Argument 3: %s" % args.build_number)
 print("Argument 4: %s" % args.image_name)
 print("Argument 5: %s" % args.path)
+print("Argument 5: %s" % args.experiment_name)
 
 print('creating AzureCliAuthentication...')
 cli_auth = AzureCliAuthentication()
@@ -117,8 +119,8 @@ print ("Pipeline is built")
 pipeline.validate()
 print("Simple validation complete")
 
-run = Run.get_context()
-experiment_name = run.experiment.name
+# run = Run.get_context()
+experiment_name = args.experiment_name # run.experiment.name
 
 pipeline_run = Experiment(ws, experiment_name).submit(pipeline)
 print("Pipeline is submitted for execution")

@@ -50,7 +50,7 @@ steps:
     # ./aml_service/create_aml_cluster.py --aml_compute_target $(aml_compute_target) 
     # --path $(Build.SourcesDirectory)'
     inlineScript: 'python ./aml_service/create_aml_cluster.py --aml_compute_target $(aml_compute_target) 
-    --path $(Build.SourcesDirectory)'
+    --path $(Build.SourcesDirectory) --experiment_name $(experiment)'
 
 - task: AzureCLI@1
   displayName: 'Master Pipeline'
