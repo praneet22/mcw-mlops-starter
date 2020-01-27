@@ -71,6 +71,9 @@ run_amlcompute.environment.python.conda_dependencies = CondaDependencies.create(
     'azureml-dataprep[pandas]'
 ])
 
+# WOrkaround for this issue: https://github.com/Azure/MachineLearningNotebooks/issues/516
+run_amlcompute.environment.python.conda_dependencies.add_conda_package("pip==19.3.1")
+
 scripts_folder = 'scripts'
 def_blob_store = ws.get_default_datastore()
 
