@@ -46,22 +46,17 @@ steps:
   inputs:
     azureSubscription: $(service_connection)
     scriptLocation: inlineScript
-    # inlineScript: 'az ml run submit-script -d ./environment_setup/dependencies.yml 
-    # ./aml_service/create_aml_cluster.py --aml_compute_target $(aml_compute_target) 
-    # --path $(Build.SourcesDirectory)'
     inlineScript: 'python ./aml_service/create_aml_cluster.py --aml_compute_target $(aml_compute_target) 
-    --path $(Build.SourcesDirectory) --experiment_name $(experiment)'
+    --path $(Build.SourcesDirectory)'
 
 - task: AzureCLI@1
   displayName: 'Master Pipeline'
   inputs:
     azureSubscription: $(service_connection)
     scriptLocation: inlineScript
-    # inlineScript: 'az ml run submit-script -d ./environment_setup/dependencies.yml 
-    # ./aml_service/pipelines_master.py --aml_compute_target $(aml_compute_target) 
-    # --model_name $(model_name) --build_number $(Build.BuildNumber) --image_name $(image_name) --path $(Build.SourcesDirectory)'
     inlineScript: 'python ./aml_service/pipelines_master.py --aml_compute_target $(aml_compute_target)
-    --model_name $(model_name) --build_number $(Build.BuildNumber) --image_name $(image_name) --path $(Build.SourcesDirectory)'
+    --model_name $(model_name) --build_number $(Build.BuildNumber) --image_name $(image_name) --path $(Build.SourcesDirectory)  
+    --experiment_name $(experiment)'
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
