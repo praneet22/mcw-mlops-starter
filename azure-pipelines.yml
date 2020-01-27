@@ -49,7 +49,7 @@ steps:
     # inlineScript: 'az ml run submit-script -d ./environment_setup/dependencies.yml 
     # ./aml_service/create_aml_cluster.py --aml_compute_target $(aml_compute_target) 
     # --path $(Build.SourcesDirectory)'
-    inlineScript: 'python /aml_service/create_aml_cluster.py --aml_compute_target $(aml_compute_target) 
+    inlineScript: 'python ./aml_service/create_aml_cluster.py --aml_compute_target $(aml_compute_target) 
     --path $(Build.SourcesDirectory)'
 
 - task: AzureCLI@1
