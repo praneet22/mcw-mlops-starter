@@ -32,7 +32,7 @@ try:
 except ComputeTargetException:
     print("creating new compute target")
     
-    provisioning_config = AmlCompute.provisioning_configuration(vm_size = "STANDARD_D2_V2",
+    provisioning_config = AmlCompute.provisioning_configuration(vm_size = "STANDARD_DS3_V2",#"STANDARD_D2_V2",
                                                                 min_nodes = 1, 
                                                                 max_nodes = 1)    
     aml_compute = ComputeTarget.create(ws, args.aml_compute_target, provisioning_config)
